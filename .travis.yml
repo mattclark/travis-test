@@ -1,5 +1,6 @@
 deploy:
-  provider: gcs
-  access_key_id: "GCS Interoperable Access Key ID"
-  secret_access_key: "GCS Interoperable Access Secret"
-  bucket: "io-osf-staging-static"
+  provider: s3
+  access_key_id: AKIAJCTYCGW5JNLQCRSA
+  secret_access_key:
+    secure: EsYzHHs9Sm9KVorwpy+PTo9G2bQyTTj6lr1EBR6bPvichbJH+o6nK8EeiK8KnzYikY5b6PqZoDXZBYG3ualBIzSQrfO2+2IWaJAmVEfRYtpQG/3x9/Tar/bK5ziYRQ3SGJm23tis8+rh/WvpFm1ml2PlnIjFqslkmNV7NwYjqVgfOZ+y4DCGZm7KqzD+RN0cpVGIAVprYdgxoJSLkQbVOUuYePR8pDfuykPMkwaJ53lUpnUpfnC5OyMVJ62TkoUovwnhAwcMhVTYTUFDboNZ9nJlLUoquwaLyHwzbOhE+wZiIm9DL2+IaPjV9HgliC0qmv1XIPMNmv1s4b6OEPhy8OKJfc07ASNxZC8BSLCiI8BZTOzNlE9X/cIGYU+QYpVwupaJoO26NTczbhuIxl/XVrkldps5aHkfFEHIp+XTn3QItYrg42AkwHUB7uJe/yBdDHmUOi5yFiStbHORRRx5Xgg81BL4VXsD5Ha+iL7kA+OU4rXCBxeQYTJBPzRJkAGBBnR7DAlblQTdMkkjAm7qN5slaaXXumliE8VrTvAQLFiajfDt2HPP/1AT8Tl7x2iDrQoxdqatyqvxoe3tSMAhFPqxA1ibFPlBsMqpR3L9FCf9KPh81+7meRW8WdZgGt8QT2OqXXCeHZ1H3A4j0eQs4jbnptw5ldaInWCRsRVnz2Q=
+  bucket: osf-staging-static
