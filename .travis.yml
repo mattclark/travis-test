@@ -1,21 +1,20 @@
+sudo: false
 language: python
-python:
-    - "3.6"
 cache:
   directories:
-    - "$HOME/google-cloud-sdk/"
+  - "$HOME/google-cloud-sdk/"
+env:
+- GAE_PYTHONPATH=${HOME}/.cache/google_appengine PATH=$PATH:${HOME}/google-cloud-sdk/bin
+  PYTHONPATH=${PYTHONPATH}:${GAE_PYTHONPATH} CLOUDSDK_CORE_DISABLE_PROMPTS=1
+before_install:
+- openssl aes-256-cbc -K $encrypted_0e6fd573bfb2_key -iv $encrypted_0e6fd573bfb2_iv
+  -in credentials.tar.gz.enc -out credentials.tar.gz -d
+- if [ ! -d "${GAE_PYTHONPATH}" ]; then python scripts/fetch_gae_sdk.py $(dirname
+  "${GAE_PYTHONPATH}"); fi
+- if [ ! -d ${HOME}/google-cloud-sdk ]; then curl https://sdk.cloud.google.com | bash;
+  fi
+- tar -xzf credentials.tar.gz
+- mkdir -p lib
+- gcloud auth activate-service-account --key-file client-secret.json
 script:
-  - gcloud version || true
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-  # Add gcloud to $PATH
-  - source /home/travis/google-cloud-sdk/path.bash.inc
-  - gcloud version
-  - gcloud config set project `staging`
-#script:
-#  - python --version
-#deploy:
-#  provider: s3
-#  access_key_id: AKIAJCTYCGW5JNLQCRSA
-#  secret_access_key:
-#    secure: EsYzHHs9Sm9KVorwpy+PTo9G2bQyTTj6lr1EBR6bPvichbJH+o6nK8EeiK8KnzYikY5b6PqZoDXZBYG3ualBIzSQrfO2+2IWaJAmVEfRYtpQG/3x9/Tar/bK5ziYRQ3SGJm23tis8+rh/WvpFm1ml2PlnIjFqslkmNV7NwYjqVgfOZ+y4DCGZm7KqzD+RN0cpVGIAVprYdgxoJSLkQbVOUuYePR8pDfuykPMkwaJ53lUpnUpfnC5OyMVJ62TkoUovwnhAwcMhVTYTUFDboNZ9nJlLUoquwaLyHwzbOhE+wZiIm9DL2+IaPjV9HgliC0qmv1XIPMNmv1s4b6OEPhy8OKJfc07ASNxZC8BSLCiI8BZTOzNlE9X/cIGYU+QYpVwupaJoO26NTczbhuIxl/XVrkldps5aHkfFEHIp+XTn3QItYrg42AkwHUB7uJe/yBdDHmUOi5yFiStbHORRRx5Xgg81BL4VXsD5Ha+iL7kA+OU4rXCBxeQYTJBPzRJkAGBBnR7DAlblQTdMkkjAm7qN5slaaXXumliE8VrTvAQLFiajfDt2HPP/1AT8Tl7x2iDrQoxdqatyqvxoe3tSMAhFPqxA1ibFPlBsMqpR3L9FCf9KPh81+7meRW8WdZgGt8QT2OqXXCeHZ1H3A4j0eQs4jbnptw5ldaInWCRsRVnz2Q=
-#  bucket: osf-staging-static
+- gcloud version
