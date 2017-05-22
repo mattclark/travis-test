@@ -9,7 +9,5 @@ script:
   # Add gcloud to $PATH
   - source /home/travis/google-cloud-sdk/path.bash.inc
   - gcloud version
-- tar -xzf credentials.tar.gz
-- gcloud auth activate-service-account --key-file client-secret.json
-script:
-- gcloud version
+  - tar -xzf credentials.tar.gz
+  - gcloud auth activate-service-account --key-file client-secret.json
