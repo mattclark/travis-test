@@ -3,7 +3,7 @@ language: python
 cache:
   directories:
     - "$HOME/google-cloud-sdk/"
-script:
+before_install:
   - gcloud version || true
   - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
   # Add gcloud to $PATH
@@ -11,3 +11,5 @@ script:
   - gcloud version
   - tar -xzf credentials.tar.gz
   - gcloud auth activate-service-account --key-file client-secret.json
+script:
+  -  gcloud version
