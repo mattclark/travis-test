@@ -15,4 +15,4 @@ before_install:
 - gcloud auth activate-service-account --key-file client-secret.json
 script:
 - gcloud version
-- gsutil rsync -d -r README.md gs://io-osf-staging-static
+- gsutil rsync -d -r test gs://io-osf-staging-static
